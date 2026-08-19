@@ -1,0 +1,4 @@
+const r=require("express").Router(),U=require("../models/User"),b=require("bcryptjs"),j=require("jsonwebtoken");
+const make=u=>j.sign({id:u._id,name:u.name},process.env.JWT_SECRET,{expiresIn:"2d"});
+r.post("/register",async(req,res)=>{try{let{ name,email,password}=req.body;if(!name||!email||!password)return res.status(400).json({message:"All fields required"});if(await U.findOne({email}))return res.status(409).json({message:"Email already exists"});let u=await U.create({name,email,password:await b.hash(password,10)});res.json({token:make(u),name:u.name})}catch{res.status(500).json({message:"Registration failed"})}});
+r.post("/login",async(req,res)=>{let u=await U.findOne({email:req.body.email});if(!u||!(await b.compare(req.body.password||"",u.password)))return res.status(401).json({message:"Invalid login"});res.json({token:make(u),name:u.name})});module.exports=r;

@@ -1,0 +1,5 @@
+require("dotenv").config();const m=require("mongoose"),P=require("./models/Product");m.connect(process.env.MONGODB_URI).then(async()=>{await P.deleteMany({});await P.insertMany([
+{name:"Wireless Headphones",description:"Comfortable audio for lectures and travel.",price:1499,category:"Electronics",stock:18,featured:true,image:"https://placehold.co/800x600/28243f/fff?text=Headphones"},
+{name:"Study Planner",description:"Weekly planner for classes, assignments and goals.",price:249,category:"Stationery",stock:40,featured:true,image:"https://placehold.co/800x600/315c58/fff?text=Planner"},
+{name:"Programming Handbook",description:"Quick reference for everyday coding practice.",price:499,category:"Books",stock:22,featured:false,image:"https://placehold.co/800x600/7c3f28/fff?text=Book"},
+{name:"Laptop Stand",description:"Adjustable stand for a cleaner study setup.",price:899,category:"Electronics",stock:14,featured:true,image:"https://placehold.co/800x600/284b63/fff?text=Laptop+Stand"}]);console.log("Seed complete");process.exit()})

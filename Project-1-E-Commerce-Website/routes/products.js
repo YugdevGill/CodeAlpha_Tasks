@@ -1,0 +1,1 @@
+const r=require("express").Router(),P=require("../models/Product");r.get("/",async(req,res)=>{let q={};if(req.query.q)q.name={$regex:req.query.q,$options:"i"};if(req.query.category&&req.query.category!="All")q.category=req.query.category;res.json(await P.find(q).sort({featured:-1}))});module.exports=r;

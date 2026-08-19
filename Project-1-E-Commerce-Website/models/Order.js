@@ -1,0 +1,1 @@
+const m=require("mongoose");module.exports=m.model("Order",new m.Schema({user:m.Schema.Types.ObjectId,items:Array,total:Number,address:String,status:{type:String,default:"Placed"}},{timestamps:true}));
