@@ -1,0 +1,1 @@
+const m=require("mongoose");module.exports=m.model("User",new m.Schema({name:String,email:{type:String,unique:true},password:String,bio:String,avatar:String,followers:[m.Schema.Types.ObjectId],following:[m.Schema.Types.ObjectId]},{timestamps:true}));

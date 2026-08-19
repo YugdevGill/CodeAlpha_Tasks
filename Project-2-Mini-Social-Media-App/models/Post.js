@@ -1,0 +1,1 @@
+const m=require("mongoose");module.exports=m.model("Post",new m.Schema({author:{type:m.Schema.Types.ObjectId,ref:"User"},content:String,likes:[m.Schema.Types.ObjectId],comments:[{user:m.Schema.Types.ObjectId,text:String,createdAt:{type:Date,default:Date.now}}]},{timestamps:true}));

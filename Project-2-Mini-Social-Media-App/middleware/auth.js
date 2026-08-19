@@ -1,0 +1,1 @@
+const j=require("jsonwebtoken");module.exports=(q,r,n)=>{try{q.user=j.verify((q.headers.authorization||"").replace("Bearer ",""),process.env.JWT_SECRET);n()}catch{r.status(401).json({message:"Login required"})}};
